@@ -3,7 +3,7 @@ import { notFound } from 'next/navigation'
 import Image from 'next/image'
 import { PortableText } from '@portabletext/react'
 import { getAllPosts, getPostBySlug } from '@/lib/queries'
-import { urlFor } from '@/lib/sanity'
+import { urlFor, hasAsset } from '@/lib/sanity'
 
 const CATEGORY_LABELS: Record<string, string> = {
   markets: 'Markets',
@@ -30,7 +30,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       description: post.excerpt,
       type: 'article',
       publishedTime: post.publishedAt,
-      images: post.coverImage
+      images: post.coverImage && hasAsset(post.coverImage)
         ? [urlFor(post.coverImage).width(1200).height(630).url()]
         : [],
     },
@@ -42,7 +42,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
   const post = await getPostBySlug(slug)
   if (!post) notFound()
 
-  const imageUrl = post.coverImage
+  const imageUrl = post.coverImage && hasAsset(post.coverImage)
     ? urlFor(post.coverImage).width(1200).height(630).url()
     : null
 

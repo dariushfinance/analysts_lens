@@ -15,3 +15,14 @@ const builder = imageUrlBuilder(client)
 export function urlFor(source: SanityImageSource) {
   return builder.image(source)
 }
+
+export function hasAsset(image: unknown): boolean {
+  return !!(
+    image &&
+    typeof image === 'object' &&
+    'asset' in image &&
+    image.asset &&
+    typeof image.asset === 'object' &&
+    '_ref' in image.asset
+  )
+}

@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import type { Post } from '@/lib/queries'
-import { urlFor } from '@/lib/sanity'
+import { urlFor, hasAsset } from '@/lib/sanity'
 
 const CATEGORY_LABELS: Record<string, string> = {
   markets: 'Markets',
@@ -25,7 +25,7 @@ interface Props {
 }
 
 export default function ArticleCard({ post, featured = false }: Props) {
-  const imageUrl = post.coverImage
+  const imageUrl = post.coverImage && hasAsset(post.coverImage)
     ? urlFor(post.coverImage).width(featured ? 1200 : 600).height(featured ? 630 : 315).url()
     : null
 
