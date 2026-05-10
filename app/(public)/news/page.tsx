@@ -17,11 +17,11 @@ const CATEGORIES = [
 ]
 
 interface Props {
-  searchParams: { category?: string }
+  searchParams: Promise<{ category?: string }>
 }
 
 export default async function NewsPage({ searchParams }: Props) {
-  const category = searchParams.category ?? ''
+  const { category = '' } = await searchParams
   const posts = category ? await getPostsByCategory(category) : await getAllPosts()
 
   return (
