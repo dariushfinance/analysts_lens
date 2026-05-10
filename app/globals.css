@@ -1,0 +1,41 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --brand-green: #10b981;
+  --brand-dark: #0a0a0a;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #ffffff;
+  color: #0a0a0a;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Portable Text styles */
+.prose-content h2 {
+  @apply text-2xl font-bold mt-8 mb-4;
+}
+.prose-content h3 {
+  @apply text-xl font-semibold mt-6 mb-3;
+}
+.prose-content p {
+  @apply text-base leading-relaxed mb-4 text-gray-700;
+}
+.prose-content blockquote {
+  @apply border-l-4 border-brand-green pl-4 italic text-gray-600 my-6;
+}
+.prose-content strong {
+  @apply font-semibold text-gray-900;
+}
+.prose-content a {
+  @apply text-brand-green underline hover:no-underline;
+}
